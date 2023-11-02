@@ -1,14 +1,14 @@
-name: Upload results to Allure Testops
+name: Allure Testops
 
 on:
   # push:
     workflow_dispatch:
       inputs:
         ALLURE_JOB_RUN_ID:
-          description: ALLURE_JOB_RUN_ID is a service parameter, should be blank
+          description: ALLURE_JOB_RUN_ID is a service parameter, leave blank
           required: false
         ALLURE_USERNAME:
-          description: ALLURE_USERNAME is a service parameter, should be blank
+          description: ALLURE_USERNAME is a service parameter, leave blank
           required: false
         browser:
           description: Browser used for tests
@@ -28,7 +28,7 @@ env:
 
 jobs:
   autotests: 
-    name: Run tests and generate Allure Report
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -50,5 +50,5 @@ jobs:
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: $(ALLURE_PROJECT_ID)
           
-      - name: Run pytest
+      - name: Run tests
         run: allurectl watch -- pytest --alluredir=allure-results
