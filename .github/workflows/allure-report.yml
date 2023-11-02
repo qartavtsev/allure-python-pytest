@@ -23,7 +23,7 @@ env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_ENDPOINT: https://demo.testops.cloud/
-  ALLURE_PROJECT_ID: '1295'
+  ALLURE_PROJECT_ID: 1295
   ALLURE_TESTPLAN_PATH: "./testplan.json"
   ALLURE_RESULTS: "allure-results"
 
@@ -47,9 +47,9 @@ jobs:
       - name: Install allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
-          allure-endpoint: $(ALLURE_ENDPOINT)
+          allure-endpoint: https://demo.testops.cloud/
           allure-token: ${{ secrets.ALLURE_TOKEN }}
-          allure-project-id: $(ALLURE_PROJECT_ID)
+          allure-project-id: 1295
           
       - name: Run tests
         run: allurectl watch -- pytest --alluredir=${ALLURE_RESULTS} --capture=no
