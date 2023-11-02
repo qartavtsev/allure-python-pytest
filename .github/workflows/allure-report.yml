@@ -24,7 +24,8 @@ env:
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
   ALLURE_ENDPOINT: https://demo.testops.cloud/
   ALLURE_PROJECT_ID: 1295
-  ALLURE_RESULTS: allure-results
+  ALLURE_TESTPLAN_PATH: "./testplan.json"
+  ALLURE_RESULTS: "allure-results"
 
 jobs:
   autotests: 
@@ -33,10 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.11'
           
       - name: Install dependencies
         run: |
@@ -51,4 +52,4 @@ jobs:
           allure-project-id: $(ALLURE_PROJECT_ID)
           
       - name: Run tests
-        run: allurectl watch -- pytest --alluredir=allure-results
+        run: allurectl watch -- pytest --alluredir=${ALLURE_RESULTS} --capture=no
