@@ -53,3 +53,8 @@ jobs:
           
       - name: Run tests
         run: allurectl watch -- pytest --alluredir=${ALLURE_RESULTS} --capture=no
+        env:
+          browser: ${{ github.event.inputs.browser}}
+          ALLURE_TESTPLAN_PATH: "./testplan.json"
+          ALLURE_RESULTS: "allure-results"
+          ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}    
