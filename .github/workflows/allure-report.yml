@@ -15,6 +15,9 @@ env:
   ALLURE_ENDPOINT: https://demo.testops.cloud/
   ALLURE_PROJECT_ID: 1295
   ALLURE_RESULTS: allure-results
+  BROWSER: chrome
+  BRANCH: master
+  PRODUCT_VERSION: 4.22.1
 
 jobs:
   autotests:
