@@ -1,13 +1,23 @@
-name: Allure Report
+name: Upload results to Allure Testops
 
 on:
-  push:
+  # push:
     workflow_dispatch:
       inputs:
         ALLURE_JOB_RUN_ID:
           description: ALLURE_JOB_RUN_ID is a service parameter, should be blank
+          required: false
         ALLURE_USERNAME:
           description: ALLURE_USERNAME is a service parameter, should be blank
+          required: false
+        browser:
+          description: Browser used for tests
+          required: true
+          default: chrome
+        os:
+          description: OS used for tests
+          required: true
+          default: macOS 
 
 env:
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
@@ -15,30 +25,24 @@ env:
   ALLURE_ENDPOINT: https://demo.testops.cloud/
   ALLURE_PROJECT_ID: 1295
   ALLURE_RESULTS: allure-results
-  browser:
-    description: Browser used for tests
-    default: chrome
-  os:
-    description: OS used for tests
-    default: macOS 
 
 jobs:
-  autotests:
+  autotests: 
     name: Run tests and generate Allure Report
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-
+          
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
+          
       - name: Install allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
@@ -46,5 +50,5 @@ jobs:
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: $(ALLURE_PROJECT_ID)
           
-      - name: Run Pytest
+      - name: Run pytest
         run: allurectl watch -- pytest --alluredir=allure-results
