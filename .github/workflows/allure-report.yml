@@ -15,9 +15,12 @@ env:
   ALLURE_ENDPOINT: https://demo.testops.cloud/
   ALLURE_PROJECT_ID: 1295
   ALLURE_RESULTS: allure-results
-  BROWSER:
+  browser:
     description: Browser used for tests
     default: chrome
+  os:
+    description: OS used for tests
+    default: macOS 
 
 jobs:
   autotests:
