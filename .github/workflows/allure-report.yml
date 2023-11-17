@@ -15,7 +15,7 @@ on:
         default: Opera
       OS:
         description: OS used for tests
-        required: true
+        required: false
         default: macOS 
 
 env:
