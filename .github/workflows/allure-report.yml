@@ -4,17 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       ALLURE_JOB_RUN_ID:
-        description: ALLURE_JOB_RUN_ID is a service parameter, leave blank
+        description: ALLURE_JOB_RUN_ID - service parameter (leave blank)
         required: false
       ALLURE_USERNAME:
-        description: ALLURE_USERNAME is a service parameter, leave blank
+        description: ALLURE_USERNAME - service parameter (leave blank)
         required: false
+      ENDPOINT:
+        description: Endpoint
+        required: false
+        default: demo.testops.cloud
       BROWSER:
-        description: Browser used for tests
+        description: Browser
         required: false
         default: Opera
       OS:
-        description: OS used for tests
+        description: OS
         required: false
         default: macOS 
 
