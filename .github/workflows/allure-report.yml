@@ -23,7 +23,7 @@ on:
         default: macOS 
 
 env:
-  ALLURE_ENDPOINT: hhttps://demo.testops.cloud/
+  ALLURE_ENDPOINT: https://demo.testops.cloud/
   ALLURE_PROJECT_ID: 1361
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
