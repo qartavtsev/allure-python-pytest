@@ -12,7 +12,7 @@ on:
       ENDPOINT:
         description: Endpoint
         required: false
-        default: demostand.qatools.cloud
+        default: demo.testops.cloud
       BROWSER:
         description: Browser
         required: false
